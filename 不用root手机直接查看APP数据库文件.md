@@ -19,3 +19,4 @@
 		//Documents/ 是指要拷贝到电脑上的目录
 		adb pull /sdcard/mydata.db Documents/
 ~~~
+>5. 拷贝到电脑后可以通过命令行的方式"sqlite3"查看也可以通过工具查看，往下就不写具体的了。
