@@ -16,7 +16,7 @@
 		mTlTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-				//TODO 选中当前的Tab触发
+				//TODO 选中当前的Tab触发此方法
             }
 
             @Override
