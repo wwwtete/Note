@@ -3,9 +3,11 @@
 > 在调用tablayout.setupWithViewPager方法之后必须重新调用一下各个tab的setCustomView方法
 
 ~~~ java
-//1.先设置Adapter
-mVpViewPager.setAdapter(mPagerAdapter);
+		//1.先设置Adapter
+		mVpViewPager.setAdapter(mPagerAdapter);
+		//2.将TabLayout和Viewpage关联上
         mTab.setupWithViewPager(mVpViewPager);
+		//3.重点来了：必须重新调用setCustomView方法
         for (int i = 0; i < mTlTab.getTabCount(); i++) {
             mTlTab.getTabAt(i).setCustomView(mPagerAdapter.getTabView(i));
         }
