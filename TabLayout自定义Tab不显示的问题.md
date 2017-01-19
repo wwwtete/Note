@@ -12,7 +12,7 @@
             mTlTab.getTabAt(i).setCustomView(mPagerAdapter.getTabView(i));
         }
 		
-		//4. 设置监听TabSelectedListener事件，来动态的更新自定义Tab的状态
+		//4. 设置监听TabSelectedListener事件，来动态的更新自定义Tab的显示状态
 		mTlTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
