@@ -16,7 +16,7 @@
 		mTlTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                updateVisibility(tab,View.VISIBLE);
+				//TODO 选中当前的Tab触发
             }
 
             @Override
