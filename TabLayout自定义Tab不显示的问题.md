@@ -11,4 +11,21 @@
         for (int i = 0; i < mTlTab.getTabCount(); i++) {
             mTlTab.getTabAt(i).setCustomView(mPagerAdapter.getTabView(i));
         }
+		
+		//4. 设置监听TabSelectedListener事件，来动态的更新自定义Tab的状态
+		mTlTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                updateVisibility(tab,View.VISIBLE);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+				//TODO 取消上次选中的tab会触发此方法
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
 ~~~
