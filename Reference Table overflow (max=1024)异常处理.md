@@ -9,4 +9,4 @@ uint8_t *inputBuffer = (uint8_t *) env->GetByteArrayElements(inputBuffer_, 0);
 > 1. 忘记释放引用或释放内存         
 
 　　凡是用到**New**的方法都需要手动进行释放(如:*env->NewByteArray*)，调用: ==env->DeleteLocalRef==方法进行释放,
-还有调用**GetByteArrayELement***方法
+还有调用**GetByteArrayELement***方法也要手动释放，调用:==ReleaseByteArrayElements==
