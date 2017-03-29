@@ -1,0 +1,1 @@
+　　首先说一下出现这个问题的背景，通过Android的Camera采集视频信息然后通过JNI来调用C来软编码，但是发现有的手机再录制时间超过5分钟后就会出现异常崩溃！通过抓log发现是：“*JNI pinned array reference table (0x5d4440a8) dump; ReferenceTable overflow (max=1024)*”引起的奔溃
