@@ -12,5 +12,5 @@ uint8_t *inputBuffer = (uint8_t *) env->GetByteArrayElements(inputBuffer_, 0);
 还有调用**GetByteArrayELement***方法也要手动释放，调用:==env->ReleaseTypeElements==方法进行释放，如果只是取bytearray中的byte可以使用==GetByteArrayRegion==方法来获取  
 > 2. 发生Reference Table overflow (max=1024) 或 Reference Table overflow (max=512)之类的异常
 
-　　如果发生类似的异常，就去排查JNI的代码，肯定有未释放的引用==(global reference、local reference)==
+　　如果发生类似的异常，就去排查JNI的代码，肯定有未释放的引用(==global reference、local reference==)
 
