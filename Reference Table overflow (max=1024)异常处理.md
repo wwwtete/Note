@@ -6,5 +6,5 @@ uint8_t *inputBuffer = (uint8_t *) env->GetByteArrayElements(inputBuffer_, 0);
 解决方案就是JNI方法中用完一行一定记得要释放,调用: ==env->ReleaseByteArrayElements(jbyteArray array, jbyte* elems,
         jint mode)==
 ### 总结一下JNI中经常遇到的问题：
-> 1. 忘记释放引用或释放内存       
+> 1. 忘记释放引用或释放内存         
 凡是用到**New**的方法都需要手动进行释放(如:*env->NewByteArray*)，调用: ==env->DeleteLocalRef(jobject localRef)==方法进行释放，如
