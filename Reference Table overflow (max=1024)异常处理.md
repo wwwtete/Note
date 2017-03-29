@@ -3,6 +3,6 @@
 ~~~ java
 uint8_t *inputBuffer = (uint8_t *) env->GetByteArrayElements(inputBuffer_, 0);
 ~~~    
-解决方案就是JNI方法中用完一行一定记得要释放,可以调用: ==env->ReleaseByteArrayElements(jbyteArray array, jbyte* elems,
+解决方案就是JNI方法中用完一行一定记得要释放,调用: ==env->ReleaseByteArrayElements(jbyteArray array, jbyte* elems,
         jint mode)==
 
