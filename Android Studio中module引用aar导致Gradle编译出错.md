@@ -11,7 +11,7 @@
 }
 
 dependencies {
-	// 其中aar-file-name不用后缀名
+	// 其中aar-file-name不用文件后缀名
 	compile(name: 'aar-file-name', ext: 'aar')  
 }
  ~~~
