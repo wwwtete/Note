@@ -5,3 +5,9 @@ dependencies {
 	    releaseCompile project(path: ':源码库', configuration: 'release')
 }
 ~~~
+> 2.修改native源码库的 build.gradle文件以启用publishNonDefault
+~~~ java
+android {
+    publishNonDefault  true
+}
+~~~
