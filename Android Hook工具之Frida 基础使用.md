@@ -89,10 +89,33 @@ Java.perform(function () {
     };
 });
 ```
-- 如何Hook一个java方法
-1. 使用`Java.use(className)`命令获取 JavaScript wrapper
-2. 调用获取到的 JavaScript wrapper对象的方法`[JavaScript wrapper对象].[要Hook的方法名].implementation=function(){...}`
-#### 注: 如果要Hook的方法有多个重载时，必须使用`overload()`方法调用，参数必须是完全匹配的，参数类型必须是全类名的也就是全引用名的。
+- Frida框架还支持加载外部脚本代码，而不用直接写到Cli中运行，使用`-f`选项后面跟着脚本文件路径即可，比如我们将上面的代码保存到一个文件中并命名为Test.js，使用命令运行：
+
+``` javascript
+frida -U -l Test.js --no-pause -f com.android.chrome
+```
+
+- Frida有时候会有超时的提示，为防止这种情况，可以将脚本里面的代码包装在`setImmediate`函数中或[导出为rpc][3]
+例: 将Test.js中的代码修改一下，然后再次运行上面的命令重新部署一下即可。
+``` javascript
+setImmediate(function() {
+    Java.perform(function () {
+    var Activity = Java.use("android.app.Activity");
+    var Exception = Java.use("java.lang.Exception");
+    Activity.onResume.implementation = function () {
+        throw Exception.$new("Test!");
+    };
+});
+});
+```
+
+
+- 如何Hook一个java方法  
+ 1. 使用`Java.use(className)`命令获取 JavaScript wrapper
+ 2. 调用获取到的 JavaScript wrapper对象的方法`[JavaScript wrapper对象].[要Hook的方法名].implementation=function(){...}`
+>  注1: 如果要Hook的方法有多个重载时，必须使用`overload()`方法调用，参数必须是完全匹配的，参数类型必须是全类名的也就是全引用名的。  
+> 注2: Hook方法中的参数，可以通过`arguments`数组访问，也可以在`implementation`函数中声明对应的形参
+
 Android 代码：
 ``` java
 public class MainActivity extends AppCompatActivity {
@@ -140,6 +163,10 @@ JavaScript Hook代码
 ``` javascript
 Java.perform(function () {
     var MainActivity = Java.use("com.github.fridademo.MainActivity");
+	MainActivity.helloAndroid.implementation = function () {
+        console.log("helloAndroid()");
+        this.private_func();
+    };
     MainActivity.test1.overload().implementation = function () {
         console.log("private_func()");
         this.private_func();
@@ -160,9 +187,6 @@ Java.perform(function () {
 ```
 
 
-
-
-
-
   [1]: https://www.jianshu.com/p/7be526b77bd2
   [2]: https://www.frida.re/docs/javascript-api/#java
+  [3]: https://www.frida.re/docs/javascript-api/#rpc
