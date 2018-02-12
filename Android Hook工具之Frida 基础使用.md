@@ -36,7 +36,8 @@ Started tracing 1 function. Press Ctrl+C to stop.
   1314 ms  open(path="/data/user/0/com.android.chrome/code_cache/com.android.opengl.shaders_cache", oflag=0xc2)
            /* TID 0x2298 */
   3264 ms  open(path="/data/user/0/com.android.chrome/shared_prefs/com.android.chrome_preferences.xml", oflag=0x241)
-
 ```
+- 强制启动一个应用进程
+`frida -U -f [应用包名]`
 
   [1]: https://www.jianshu.com/p/7be526b77bd2
