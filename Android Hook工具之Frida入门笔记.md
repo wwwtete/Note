@@ -75,4 +75,4 @@ frida-ps -U
 14462  com.UCMobile:push
 ```
 参数-U 代表USB，意思让Frida检查USB设备，使用`frida-ps -R` 也可以，但是需要进行转发。执行`adb forward tcp:27042 tcp:27042`后执行`frida-ps -R`也可以看到手机上的进程.   
-到此为止，Frida工作环境已经准备好了，下一篇文章介绍一下Frida框架的基本使用方式
+到此为止，Frida工作环境已经准备好了，下一篇文章介绍一下Frida框架的基础使用方式。
