@@ -168,19 +168,19 @@ Java.perform(function () {
         this.private_func();
     };
     MainActivity.test1.overload().implementation = function () {
-        console.log("private_func()");
+        console.log("test1()");
         this.private_func();
     };
     MainActivity.test2.overload("int").implementation = function (i) {
-        console.log("private_func(int): " + i);
+        console.log("test2(int): " + i);
         this.private_func(i);
     };
     MainActivity.test3.overload("java.lang.String").implementation = function () {
-        console.log("private_func(String): " + arguments[0]);
+        console.log("test3(String): " + arguments[0]);
         this.private_func(arguments[0]);
     };
     MainActivity.test4.overload("java.lang.String", "boolean").implementation = function (s, b) {
-        console.log("private_func(String,boolean): " + s + ", " + b);
+        console.log("test4(String,boolean): " + s + ", " + b);
         this.private_func(s, b);
     };
 });
