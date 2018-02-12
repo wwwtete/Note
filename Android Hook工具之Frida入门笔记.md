@@ -6,8 +6,8 @@ Frida是一款基于Python + JavaScript的Hook调试框架，可以将自己编�
 - 在堆上查找对象实例并使用这些对象实例
 - Hook，跟踪和拦截函数等等
 
-Frida官网地址：https://www.frida.re.  
-### 工作环境
+> Frida官网地址：https://www.frida.re.  
+
  Frida可以运行在多个平台上，这次主要讲解使用MacOS当宿主机的使用方式
  - 宿主机系统：Mac OS
  - Android手机: 已Root过的Android 手机或使用Android模拟器也可以（PS:我使用的华为荣耀6p的Android 6.0系统，模拟器没用过不知道会不会有坑）
