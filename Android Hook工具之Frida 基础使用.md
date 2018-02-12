@@ -79,7 +79,7 @@ org.chromium.chrome.browser.snackbar.undo.UndoBarController
 ```
 一旦Frida匹配到你的请求，就会使用一个或多个参数调用onMeth方法，如果匹配完成时就会调用onComplete，
 
-`Java.use(className)` 根据className动态获取一个JavaScript wrapper，获取到后可以调用`$new()`方法来实例化一个对象，也可以调用`$dispose()`方法进行释放
+- `Java.use(className)` 根据className动态获取一个JavaScript wrapper，获取到后可以调用`$new()`方法来实例化一个对象，也可以调用`$dispose()`方法进行释放
 ``` stylus
 Java.perform(function () {
     var Activity = Java.use("android.app.Activity");
@@ -89,6 +89,32 @@ Java.perform(function () {
     };
 });
 ```
+- 如何Hook一个java方法
+1. 使用`Java.use(className)`命令获取 JavaScript wrapper
+2. 调用获取到的 JavaScript wrapper对象的方法`[JavaScript wrapper对象].[要Hook的方法名].implementation=function(){...}`
+#### 注: 如果要Hook的方法有多个重载时，必须使用`overload()`方法调用，参数必须是完全匹配的，参数类型必须是全类名的也就是全引用名的。
+``` javascript
+Java.perform(function () {
+    var MainActivity = Java.use("com.github.fridademo.MainActivity");
+    MainActivity.test1.overload().implementation = function () {
+        console.log("private_func()");
+        this.private_func();
+    };
+    MainActivity.test2.overload("int").implementation = function (i) {
+        console.log("private_func(int): " + i);
+        this.private_func(i);
+    };
+    MainActivity.test3.overload("java.lang.String").implementation = function () {
+        console.log("private_func(String): " + arguments[0]);
+        this.private_func(arguments[0]);
+    };
+    MainActivity.test4.overload("java.lang.String", "boolean").implementation = function (s, b) {
+        console.log("private_func(String,boolean): " + s + ", " + b);
+        this.private_func(s, b);
+    };
+});
+```
+
 
 
 
