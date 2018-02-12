@@ -110,7 +110,7 @@ setImmediate(function() {
 ```
 
 
-- 如何Hook一个java方法  
+### 如何Hook一个java方法  
  1. 使用`Java.use(className)`命令获取 JavaScript wrapper
  2. 调用获取到的 JavaScript wrapper对象的方法`[JavaScript wrapper对象].[要Hook的方法名].implementation=function(){...}`
 >  注1: 如果要Hook的方法有多个重载时，必须使用`overload()`方法调用，参数必须是完全匹配的，参数类型必须是全类名的也就是全引用名的。  
