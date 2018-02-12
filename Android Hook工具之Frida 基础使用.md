@@ -38,6 +38,27 @@ Started tracing 1 function. Press Ctrl+C to stop.
   3264 ms  open(path="/data/user/0/com.android.chrome/shared_prefs/com.android.chrome_preferences.xml", oflag=0x241)
 ```
 - 强制启动一个应用进程
-`frida -U -f [应用包名]`
+`frida -U --no-pause -f [应用包名]`
+使用`-f`选项表示强制启动一个应用程序，`--no-pause`选项表示不中断应用程序的启动，如果不使用这个选项总是会遇到 在强制启动应用程序2秒左右后程序自动退出，
+例: 强制启动Chrome并attach到当前进程
+``` stylus
+frida -U --no-pause -f com.android.chrome
+     ____
+    / _  |   Frida 10.6.52 - A world-class dynamic instrumentation toolkit
+   | (_| |
+    > _  |   Commands:
+   /_/ |_|       help      -> Displays the help system
+   . . . .       object?   -> Display information about 'object'
+   . . . .       exit/quit -> Exit
+   . . . .
+   . . . .   More info at http://www.frida.re/docs/home/
+Spawned `com.android.chrome`. Resuming main thread!                     
+[HUAWEI EVA-AL10::com.android.chrome]-> 
+```
+当attach成功后，就可以开始Hook Java函数和对象了。
+关于Friada框架中Java部分的API可以查看[官方文档][2]，下面总结几个常用的API。
+- `Java.available`  返回一个Boolean值，表示当前进程是否加载了 JVM也就是是否运行在Dalvik 或 ART环境中.如果返回false则Java 相关的API则无法调用
+
 
   [1]: https://www.jianshu.com/p/7be526b77bd2
+  [2]: https://www.frida.re/docs/javascript-api/#java
