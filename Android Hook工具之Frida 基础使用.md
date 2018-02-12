@@ -58,6 +58,27 @@ Spawned `com.android.chrome`. Resuming main thread!
 当attach成功后，就可以开始Hook Java函数和对象了。
 关于Friada框架中Java部分的API可以查看[官方文档][2]，下面总结几个常用的API。
 - `Java.available`  返回一个Boolean值，表示当前进程是否加载了 JVM也就是是否运行在Dalvik 或 ART环境中.如果返回false则Java 相关的API则无法调用
+``` stylus
+[HUAWEI EVA-AL10::com.android.chrome]-> Java.available
+true
+```
+- `Java.enumerateLoadedClasses(callbacks)` 列出已加载的类
+``` stylus
+[HUAWEI EVA-AL10::com.android.chrome]-> Java.perform(function(){Java.enumerateLo
+adedClasses({"onMatch":function(className){ console.log(className) },"onComplete
+":function(){console.log(onComplete) }})})
+org.chromium.chrome.browser.ntp.ContentSuggestionsNotifier
+org.chromium.chrome.browser.snackbar.undo.UndoBarController
+```
+所有的代码逻辑都封装在`Java.perform(function(){ … }) `中，逻辑很简单，就是使用Java.enumerateLoadedClassesFridas API 列出所有已加载的类，并将每个类的className输出到控制台，这种使用方式是Frida框架中最常用的，它其实就是一个回调对象模板，
+``` javascript
+{
+  "onMatch":function(arg1, ...){ ... },
+  "onComplete":function(){ ... },
+}
+```
+一旦Frida匹配到你的请求，就会使用一个或多个参数调用onMeth方法，如果匹配完成时就会调用onComplete函数
+
 
 
   [1]: https://www.jianshu.com/p/7be526b77bd2
