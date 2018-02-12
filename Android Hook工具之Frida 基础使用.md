@@ -93,6 +93,51 @@ Java.perform(function () {
 1. 使用`Java.use(className)`命令获取 JavaScript wrapper
 2. 调用获取到的 JavaScript wrapper对象的方法`[JavaScript wrapper对象].[要Hook的方法名].implementation=function(){...}`
 #### 注: 如果要Hook的方法有多个重载时，必须使用`overload()`方法调用，参数必须是完全匹配的，参数类型必须是全类名的也就是全引用名的。
+Android 代码：
+``` java
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        findViewById(R.id.mBtnTest).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                test1();
+                test2(123);
+                test3("str");
+                test4("str", true);
+
+                System.out.println("func_with_ret(4): " + func_with_ret(4));
+            }
+        });
+    }
+
+    private void test1() {
+        System.out.println("private_func()");
+    }
+
+    private void test2(int i) {
+        System.out.println("private_func(int) " + i);
+    }
+
+    private void test3(String s) {
+        System.out.println("private_func(String) " + s);
+    }
+
+    private void test4(String s, boolean b) {
+        System.out.println("private_func(String, boolean) " + s + ", " + b);
+    }
+
+    private int func_with_ret(int i) {
+        System.out.println("func_with_ret(int) " + i);
+        return i * i;
+    }
+}
+
+```
 ``` javascript
 Java.perform(function () {
     var MainActivity = Java.use("com.github.fridademo.MainActivity");
