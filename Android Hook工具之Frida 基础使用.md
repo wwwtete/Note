@@ -105,39 +105,38 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.mBtnTest).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+				helloAndroid();
                 test1();
                 test2(123);
                 test3("str");
                 test4("str", true);
-
-                System.out.println("func_with_ret(4): " + func_with_ret(4));
             }
         });
     }
+	
+	private void helloAndroid() {
+        System.out.println("helloAndroid()");
+    }
 
     private void test1() {
-        System.out.println("private_func()");
+        System.out.println("test1()");
     }
 
     private void test2(int i) {
-        System.out.println("private_func(int) " + i);
+        System.out.println("test2(int) " + i);
     }
 
     private void test3(String s) {
-        System.out.println("private_func(String) " + s);
+        System.out.println("test3(String) " + s);
     }
 
     private void test4(String s, boolean b) {
-        System.out.println("private_func(String, boolean) " + s + ", " + b);
-    }
-
-    private int func_with_ret(int i) {
-        System.out.println("func_with_ret(int) " + i);
-        return i * i;
+        System.out.println("test4(String, boolean) " + s + ", " + b);
     }
 }
 
 ```
+JavaScript Hook代码
 ``` javascript
 Java.perform(function () {
     var MainActivity = Java.use("com.github.fridademo.MainActivity");
@@ -159,6 +158,8 @@ Java.perform(function () {
     };
 });
 ```
+
+
 
 
 
