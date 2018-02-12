@@ -43,7 +43,7 @@ frida-ps
  517  QQ
  530  QQ jietu plugin
 ```
-- Frida-server: 直接去官网下载:https://github.com/frida/frida/releases 对应的版本即可，注意：Frida-server的版本必须跟你宿主机的Frida版本一致,比如我宿主机Frida的版本是10.6.52，Android手机是arm的，那么应该下载：rida-server-10.6.52-android-arm.xz 文件。  
+- Frida-server: 直接去官网下载:https://github.com/frida/frida/releases 对应的版本即可，注意：Frida-server的版本必须跟你宿主机的Frida版本一致,比如我宿主机Frida的版本是10.6.52，Android手机是arm64的，那么应该下载：rida-server-10.6.52-android-arm64.xz 文件。  
 下载后解压文件，并将文件重命名为: `frida-server`, 重命名完成后使用`adb push`命令推送到手机中
 ``` stylus
 adb push frida-server /data/local/tmp/
