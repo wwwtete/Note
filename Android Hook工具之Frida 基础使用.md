@@ -77,7 +77,18 @@ org.chromium.chrome.browser.snackbar.undo.UndoBarController
   "onComplete":function(){ ... },
 }
 ```
-一旦Frida匹配到你的请求，就会使用一个或多个参数调用onMeth方法，如果匹配完成时就会调用onComplete函数
+一旦Frida匹配到你的请求，就会使用一个或多个参数调用onMeth方法，如果匹配完成时就会调用onComplete，
+
+`Java.use(className)` 根据className动态获取一个JavaScript wrapper，获取到后可以调用`$new()`方法来实例化一个对象，也可以调用`$dispose()`方法进行释放
+``` stylus
+Java.perform(function () {
+    var Activity = Java.use("android.app.Activity");
+    var Exception = Java.use("java.lang.Exception");
+    Activity.onResume.implementation = function () {
+        throw Exception.$new("Test!");
+    };
+});
+```
 
 
 
